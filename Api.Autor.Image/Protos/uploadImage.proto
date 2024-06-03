@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option go_package = "api.autor/imageupload";
+
+package imageupload;
+
+service ImageUploader {
+  rpc UploadImage (ImageUploadRequest) returns (ImageUploadResponse);
+  rpc GetImageByGuid (GetImageByGuidRequest) returns (GetImageByGuidResponse);
+}
+
+message ImageUploadRequest {
+  bytes image_data = 1;
+  string guid = 2;
+}
+
+message ImageUploadResponse {
+  bool success = 1;
+  string message = 2;
+  string imageUrl = 3; // Opcional: URL de la imagen guardada
+}
+
+message GetImageByGuidRequest {
+  string guid = 1;
+}
+
+message GetImageByGuidResponse {
+  bool success = 1;
+  string message = 2;
+  bytes image_data = 3;
+}
